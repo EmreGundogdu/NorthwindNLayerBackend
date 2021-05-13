@@ -34,12 +34,18 @@ namespace Core.EntityFramework
 
         public TEntity Get(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            using (var context = new TContext())
+            {
+                return context.Set<TEntity>().SingleOrDefault(predicate);
+            }
         }
 
         public IList<TEntity> GetList(Expression<Func<TEntity, bool>> predicate = null)
         {
-            throw new NotImplementedException();
+            using (var context = new TContext())
+            {
+                return predicate == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(predicate).ToList();
+            }
         }
 
         public void Update(TEntity entity)
