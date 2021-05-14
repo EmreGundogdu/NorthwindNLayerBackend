@@ -20,7 +20,7 @@ namespace Business.Concrete
         public IResult Add(Product product)
         {
             _productDal.Add(product);
-            return new SuccessResult("Ürün Başarıyla Kaydedildi.");
+            return new SuccessResult("Ürün Başarıyla Eklendi.");
         }
 
         public IResult Delete(Product product)
