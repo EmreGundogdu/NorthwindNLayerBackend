@@ -19,7 +19,8 @@ namespace WebAPI.Controllers
         {
             _productService = productService;
         }
-        [HttpGet("getbyid")]
+        [HttpGet]
+        [Route("getbyid")]
         public IActionResult GetById(int categoryId)
         {
             var result = _productService.GetById(categoryId);
@@ -29,7 +30,8 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("getall")]
+        [HttpGet]
+        [Route("getlist")]
         public IActionResult GetList()
         {
             var result = _productService.GetList();
@@ -39,7 +41,8 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("getbycategory")]
+        [HttpGet]
+        [Route("getlistbycategory")]
         public IActionResult GetListByCategory(int categoryId)
         {
             var result = _productService.GetListByCategory(categoryId);

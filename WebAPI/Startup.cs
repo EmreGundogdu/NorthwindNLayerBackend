@@ -1,3 +1,7 @@
+using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,7 +27,10 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<IProductDal, EfProductDal>();
             services.AddRazorPages();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +48,9 @@ namespace WebAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseRouting();
+
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -50,6 +60,7 @@ namespace WebAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
