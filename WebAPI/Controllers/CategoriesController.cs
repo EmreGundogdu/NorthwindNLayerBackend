@@ -12,19 +12,20 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        ICategoryService _categoryService;
+        private ICategoryService _categoryService;
 
         public CategoriesController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
         }
         [HttpGet]
+        [Route("getlist")]
         public IActionResult GetList()
         {
             var result = _categoryService.GetList();
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result.Data);
             }
             return BadRequest(result.Message);
         }
