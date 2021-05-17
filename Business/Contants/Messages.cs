@@ -12,6 +12,10 @@ namespace Business.Contants
         public static string ProductAdded = "Ürün Başarıyla Eklendi";
         public static string ProductDeleted = "Ürün Başarıyla Silindi";
         public static string ProductUpdated = "Ürün Başarıyla Güncellendi";
+
         public static string UserNotFound = "Kullanıcı Bulunamadı";
+        public static string PasswordError = "Şifre Hatalı";
+        public static string SuccessfullLogin = "Sisteme Giriş Başarılı";
+        public static string UserAlreadyExists = "Bu Kullanıcı Emaili Zaten Mevcut";
     }
 }
