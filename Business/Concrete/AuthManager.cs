@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Contants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using Core.Utilities.Security.JWT;
@@ -13,6 +14,14 @@ namespace Business.Concrete
 {
     public class AuthManager : IAuthService
     {
+        IUserService _userService;
+        ITokenHelper _tokenHelper;
+        public AuthManager(IUserService userService, ITokenHelper tokenHelper)
+        {
+            _userService = userService;
+            _tokenHelper = tokenHelper;
+        }
+
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
             throw new NotImplementedException();
@@ -20,7 +29,12 @@ namespace Business.Concrete
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
-            throw new NotImplementedException();
+            var userToCheck = _userService.GetByMail(userForLoginDto.Email);
+            if (userToCheck==null)
+            {
+                return new ErrorDataResult<User>(Messages.UserNotFound);
+            }
+
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
