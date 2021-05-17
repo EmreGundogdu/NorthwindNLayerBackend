@@ -17,5 +17,8 @@ namespace Business.Contants
         public static string PasswordError = "Şifre Hatalı";
         public static string SuccessfullLogin = "Sisteme Giriş Başarılı";
         public static string UserAlreadyExists = "Bu Kullanıcı Emaili Zaten Mevcut";
+        public static string UserRegistered = "Kullanıcı Başarıyla Kaydedildi";
+
+        public static string AccessTokenCreated = "Access Token Başarıyla Oluşturuldu";
     }
 }
