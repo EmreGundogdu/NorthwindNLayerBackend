@@ -48,14 +48,16 @@ namespace WebAPI
 
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowOrigin", builder => builder.WithOrigins("http://localhost:3000"));
+                options.AddPolicy("AllowOrigin",
+                    builder => builder.WithOrigins("http://localhost:3000"));
             });
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
             {
-                opt.TokenValidationParameters = new TokenValidationParameters
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer=true,
+                    ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidIssuer = tokenOptions.Issuer,
